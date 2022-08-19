@@ -49,6 +49,10 @@ inputs:
     description: Add the plan to a GitHub PR
     required: false
     default: "true"
+  git_replace_ssh_with_https:
+    description: If set to "true", Git will be configured to replace SSH URLs with HTTPs ones.
+    required: false
+    default: ""
 
 outputs:
   changes:

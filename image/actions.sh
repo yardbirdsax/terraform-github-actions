@@ -80,6 +80,12 @@ function setup() {
         debug_file "$STEP_TMP_DIR/github_comment_react.stderr"
     fi
 
+    if [[ "$INPUT_GIT_REPLACE_SSH_WITH_HTTPS" == "true" ]]; then
+        debug_log "Setting Git Config to replace SSH with HTTPS"
+        git config --add --global 'url.https://github.com/.insteadOf' 'ssh://git@github.com:'
+        git config --add --global 'url.https://github.com/.insteadOf' 'git@github.com:'
+    fi
+
     export TF_DATA_DIR="$STEP_TMP_DIR/terraform-data-dir"
     export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
     mkdir -p "$TF_DATA_DIR" "$TF_PLUGIN_CACHE_DIR" "$JOB_TMP_DIR/terraform-bin-dir"
